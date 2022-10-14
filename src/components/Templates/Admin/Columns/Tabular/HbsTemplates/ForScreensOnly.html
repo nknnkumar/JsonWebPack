@@ -1,0 +1,41 @@
+<script id="HbsTemplateForScreensOnly" type="text/x-handlebars">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ScreenName</th>
+                <th>ScreenNameForHtmlId</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.Screens}}
+            <tr>
+                <td class="text-center">
+                    {{ForSNo @index}}
+                </td>
+                <td>
+                    {{this.ScreenName}}
+                </td>
+                <td>
+                    {{this.ScreenNameForHtmlId}}
+                </td>
+                <td>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}"
+                    aria-expanded="false" aria-controls="{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}">
+                    Toggle Columns
+                </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan=5 >
+                    <div class="collapse {{CollapseClass}}" id="{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}">
+                        {{> HbsTemplateForTableColumnsForAllInOneWithValuesOnly FolderName=../FolderName FileNameWithOutExtension=../FileNameWithOutExtension ItemName=../ItemName ScreenName=ScreenName}}
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+   
+    </table>
+  </script>

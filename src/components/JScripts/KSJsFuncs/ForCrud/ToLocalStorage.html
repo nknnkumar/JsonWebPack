@@ -1,0 +1,26 @@
+<script>
+    class ForLocalStorageClass {
+        static jFCreateuuid = () => {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        };
+
+        static jFInsertToLocalStorage = ({ inData }) => {
+            let jVarLocalUUID = this.jFCreateuuid();
+
+            inData.forEach((element, LoopIndex) => {
+                if ("KData" in element) {
+                    if ("TableInfo" in element.KData) {
+                        element.KData.TableInfo.DataAttributes.localstorageid = jVarLocalUUID;
+                        element.KData.TableInfo.DataAttributes.localstoragearrayindex = LoopIndex;
+                    };
+                };
+            });
+
+            localStorage.setItem(jVarLocalUUID, JSON.stringify(inData));
+            return jVarLocalUUID;
+        };
+    };
+</script>

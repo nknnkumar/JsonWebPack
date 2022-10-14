@@ -1,0 +1,48 @@
+<script id="HbsTemplateForItemsOnly" type="text/x-handlebars">
+    <div class="card text-dark bg-light">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h4>{{FileName}}</h4>
+                </div>
+
+                <div class="col">
+                    <input type="text" class="form-control" name="" placeholder="Type to search..."
+                        onkeyup="jFTableSearch(event)" autofocus>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            {{#each this.Items}}
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading-{{@../../key}}-{{@../key}}-{{@key}}">
+                {{#if ShowOnLoad}}
+        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapse-{{@../../key}}-{{@../key}}-{{@key}}" aria-expanded="true" aria-controls="collapse-{{this.ItemNameForHtmlId}}">
+        {{ItemName}}
+        </button>
+        {{else}}
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapse-{{@../../key}}-{{@../key}}-{{@key}}" aria-expanded="false aria-controls="collapse-{{this.ItemNameForHtmlId}}">
+        {{ItemName}}
+        </button>
+        {{/if}}
+              </h2>
+              {{#if ShowOnLoad}}
+              <div id="collapse-{{@../../key}}-{{@../key}}-{{@key}}" class="accordion-collapse collapse show" aria-labelledby="heading-{{this.ItemNameForHtmlId}}">
+                <div class="accordion-body">
+                    {{>HbsTemplateForScreensOnly}}
+                </div>
+              </div>
+              {{else}}
+              <div id="collapse-{{@../../key}}-{{@../key}}-{{@key}}" class="accordion-collapse collapse" aria-labelledby="heading-{{this.ItemNameForHtmlId}}">
+                <div class="accordion-body">
+                    {{>HbsTemplateForScreensOnly}}
+                </div>
+              </div>
+              {{/if}}
+            </div>
+            {{/each}}
+        </div>
+    </div>
+            </script>

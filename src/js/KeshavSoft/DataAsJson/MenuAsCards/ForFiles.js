@@ -49,7 +49,6 @@ let FetchAsPost = (event) => {
 
             BuildBreadcrumb({ inFolderName: jVarLocalFolderName });
 
-
             let jVarLocalkeshavsoftfilesclick = document.getElementsByClassName("keshavsoftfilesclick");
 
             Array.from(jVarLocalkeshavsoftfilesclick).forEach((spanElement) => {
@@ -57,8 +56,6 @@ let FetchAsPost = (event) => {
                     let jVarInsideCurrentTarget = event.currentTarget;
                     let jVarLocalKeshavsoftGetFileName = jVarInsideCurrentTarget.getAttribute("keshavsoftfilename");
                     console.log("jVarLocalKeshavsoftGetFileName:", jVarLocalKeshavsoftGetFileName);
-
-
                     ForItemsFetchAsPost({
                         inFolderName: jVarLocalFolderName,
                         inFileNameWithExtension:jVarLocalKeshavsoftGetFileName

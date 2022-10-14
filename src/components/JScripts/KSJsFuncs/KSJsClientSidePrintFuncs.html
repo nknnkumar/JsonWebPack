@@ -1,0 +1,126 @@
+<script>
+    class jClassGlobalPrintFuncs {
+        static CommonFuncs = {
+            ForPrint: ({ inPromiseArray, inCurrentTarget }) => {
+                let jVarLocalHtmlFilesArray;
+                let jVarLocalJsonData;
+                let jVarLocalKTF = true;
+
+                let jVarLocalUrlFromPrepareForUrl = jVarGlobalClientObject.Print.Ui.CommonFuncs.FromPublic.PrepareForUrl({ inCurrentTarget });
+
+                Promise.all(inPromiseArray)
+                    .then(responses => {
+                        return Promise.all(responses.map((LoopItem, LoopIndex) => {
+                            return LoopItem.json();
+                        }));
+                    }).then(responses => {
+                        // all responses are resolved successfully
+                        for (let LoopIndex = 0; LoopIndex < responses.length; LoopIndex++) {
+                            const jVarLocalLoopValue = responses[LoopIndex];
+                            
+                            switch (LoopIndex) {
+                                case 0:
+                                    if (jVarLocalLoopValue.KTF) {
+                                        jVarLocalHtmlFilesArray = jVarLocalLoopValue.DataFromServer;
+                                    } else {
+                                        jVarLocalKTF = false;
+                                    };
+
+                                    break;
+                                case 1:
+                                    if (jVarLocalLoopValue.KTF) {
+                                        jVarLocalJsonData = jVarLocalLoopValue.JsonData;
+                                    } else {
+                                        jVarLocalKTF = false;
+                                    };
+
+                                    break;
+                                default:
+                                    break;
+                            };
+                        };
+
+                        if (jVarLocalKTF) {
+                            jFPullPrintFiles({
+                                inPrintFilesArray: jVarLocalHtmlFilesArray,
+                                inJsonData: jVarLocalJsonData,
+                                inHtmlPath: jVarLocalUrlFromPrepareForUrl
+                            });
+                        } else {
+                            console.log("insufficient data!");
+                        }
+                    });
+            }
+        };
+
+        static jFPrint = ({ inEvent, inJsonConfig, inItemConfig }) => {
+            let PromiseArray = [];
+            let jVarLocalCurrentTarget = inEvent.currentTarget;
+            let JsonPK = jVarLocalCurrentTarget.closest("tr").dataset.pk;
+            let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
+            let jVarLocalKTF = true;
+
+            let jVarLocalBodyObject = {
+                inFolderName: inJsonConfig.inFolderName,
+                inJsonFileName: inJsonConfig.inJsonFileName,
+                inItemName: inItemConfig.inItemName,
+                inRowPK: JsonPK
+            };
+
+            let jVarLocalCookieFirmDetails = localStorage.getItem("FirmDetails");
+            let jVarLocalDataPk = JSON.parse(jVarLocalCookieFirmDetails);
+
+            let jVarLocalFetchForHtmlFiles = `${window.location.origin}/${jVarLocalRoute}/Api/Preview/ForHtml`;
+
+            PromiseArray.push(fetch(jVarLocalFetchForHtmlFiles));
+            PromiseArray.push(fetch(`${window.location.origin}/${jVarLocalRoute}/Api/Preview/ShowData`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jVarLocalBodyObject)
+            }));
+
+            this.CommonFuncs.ForPrint({ inPromiseArray: PromiseArray, inCurrentTarget: jVarLocalCurrentTarget });
+        };
+
+
+        static jFPrintFromData = ({ inEvent, inJsonConfig, inItemConfig }) => {
+            let PromiseArray = [];
+            let jVarLocalCurrentTarget = inEvent.currentTarget;
+            let JsonPK = jVarLocalCurrentTarget.closest("tr").dataset.pk;
+            let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
+
+            let jVarLocalBodyObject = {
+                ...inJsonConfig, ...inItemConfig, inRowPK: JsonPK
+            };
+
+            //let jVarLocalFetchForHtmlFiles = `${window.location.origin}/${jVarLocalRoute}/Api/Preview/ForHtml`;
+
+            let jVarLocalFetchForHtmlFiles = `${window.location.origin}/${jVarLocalRoute}/Api/Data/FromFolder/FromFile/ScreensFromDisplayJson/Items/Screens/FromPrintFilesJson/GetData/AsArray`;
+            let jVarLocalFetchJsonData = `${window.location.origin}/${jVarLocalRoute}/Api/Preview/ShowData/FromDataFolder`;
+            let jVarLocalFetchForHtmlFilesHeaders = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jVarLocalBodyObject)
+            };
+
+            PromiseArray.push(fetch(jVarLocalFetchForHtmlFiles, jVarLocalFetchForHtmlFilesHeaders));
+            PromiseArray.push(fetch(jVarLocalFetchJsonData, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jVarLocalBodyObject)
+            }));
+
+            this.CommonFuncs.ForPrint({ inPromiseArray: PromiseArray, inCurrentTarget: jVarLocalCurrentTarget });
+        };
+
+    };
+</script>

@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "handlebars-loader": "^1.7.2",
+    "html-loader": "^4.2.0",
     "webpack": "^5.74.0"
   },
   "devDependencies": {

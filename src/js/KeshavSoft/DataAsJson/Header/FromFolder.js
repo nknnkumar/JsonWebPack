@@ -53,13 +53,11 @@ let jFShowFoldersInMenu = () => {
                         });
                     });
 
-
                 let k1 = document.querySelectorAll('[keshavsoftfoldername]');
 
                 k1.forEach((spanElement) => {
                     spanElement.addEventListener("click", FetchAsPost);
                 });
-
             };
         };
     });

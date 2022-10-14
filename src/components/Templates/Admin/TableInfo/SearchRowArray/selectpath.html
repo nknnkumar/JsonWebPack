@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded mb-3" aria-label="Twelfth navbar example">
+    <div class="container-fluid">
+      <button class="navbar-toggler mb-2 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample10"
+        aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>FIlters
+      </button>
+      <div id="navbarsExample10" class="collapse navbar-collapse justify-content-md-center">
+        <div id="KDataListNavBar">
+          <ul class="navbar-nav gap-2">
+            <li class="nav-item d-none">
+              <label class="nav-link active">Folder</label>
+            </li>
+            <li class="nav-item me-2">
+              <div class="input-group">
+                <input type="text" class="form-control" list="FolderList" name="FolderName" id="FolderSelected"
+                  placeholder="Select Folder" autocomplete="off">
+                <datalist id="FolderList"> </datalist>
+
+                <button class="btn btn-outline-secondary" type="button"
+                  onclick="jVarGlobalClientObject.DataApi.Files.PullData()" id="button-addon2">Go</button>
+              </div>
+            </li>
+            <li class="nav-item d-none">
+              <label class="nav-link active">File</label>
+            </li>
+            <li class="nav-item me-2 ">
+              <div class="input-group">
+                <input type="text" class="form-control" list="FileList" name="FileName" id="FileSelected"
+                  placeholder="Select File" autocomplete="off">
+                <datalist id="FileList"> </datalist>
+                <button class="btn btn-outline-secondary" type="button"
+                  onclick="jVarGlobalClientObject.DataApi.Items.ForDataList(event)" id="button-addon2">Go</button>
+
+              </div>
+            </li>
+            <li class="nav-item d-none">
+              <label class="nav-link active">Item</label>
+            </li>
+            <li class="nav-item me-2 ">
+              <div class="input-group">
+                <input type="text" class="form-control" list="ItemList" name="ItemName" id="ItemSelected"
+                  placeholder="Select Item" autocomplete="off">
+                <datalist id="ItemList"> </datalist>
+                <button class="btn btn-outline-secondary" type="button"
+                  onclick="jVarGlobalClientObject.DataApi.Screens.ForDataList()" id="button-addon2">Go</button>
+              </div>
+            </li>
+            <li class="nav-item d-none">
+              <label class="nav-link active">Screen</label>
+            </li>
+            <li class="nav-item me-3 ">
+              <div class="input-group">
+                <input type="text" class="form-control" list="ScreenList" name="ScreenName" id="ScreenSelected"
+                  placeholder="Select Screen" autocomplete="off">
+                <datalist id="ScreenList">
+
+                </datalist>
+
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>

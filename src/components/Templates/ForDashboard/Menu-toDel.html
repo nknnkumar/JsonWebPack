@@ -1,0 +1,63 @@
+<template id="TemplateForBreadcrumb">
+    {{#each this}}
+    <li class="breadcrumb-item"><a href="#" onclick="{{onClick}}">{{@key}}</a></li>
+    {{/each}}
+</template>
+
+<template id="TemplateForMenuItem">
+    <li>
+        <a href="#" keshavsoftfoldername="{{MenuName}}"
+            onclick="jGlobalClassForCardMenu.ForFiles.FetchAsPost(event.currentTarget,'{{MenuName}}')"
+            class="nav-link {{MenuClass}}">
+
+            <svg class="bi d-block mx-auto mb-1 d-none d-md-block" width="24" height="24">
+                <use xlink:href="#{{IconClass}}" />
+            </svg>
+
+            {{MenuName}}
+        </a>
+    </li>
+</template>
+
+<template id="TemplateForFiles">
+    <div class="col-4">
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="card-body">
+                    <h5 class="card-title">{{FileName}}</h5>
+                    <a href="#" onclick="jGlobalClassForCardMenu.ForItems.FetchAsPost('{{FolderName}}','{{FileName}}')"
+                        class="btn btn-primary">Items - {{ItemCount}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="TemplateForItemCard">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-body">
+                    <h5 class="card-title ItemNameClass">{{ItemName}}</h5>
+                    <p>Rows : <span class="RowCountClass">{{RowCount}}</span> </p>
+                    <a href="#" class="btn btn-primary">Screens : <span class="ScreenCountClass">{{ScreenCount}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="TemplateForScreens">
+    <div class="col-3">
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div class="card-header bg-transparent border-success ScreenNameClass">{{ScreenName}}</div>
+            <div class="card-body text-success">
+                <h5 class="card-title">Rows : <span class="RowCountClass">{{RowCount}}</span></h5>
+            </div>
+            <div class="card-footer bg-transparent border-success"> <a href="#" class="btn btn-success">Columns :
+                    <span class="ColumnCountClass">{{ColumnCount}}</span> </a>
+            </div>
+        </div>
+    </div>
+</template>

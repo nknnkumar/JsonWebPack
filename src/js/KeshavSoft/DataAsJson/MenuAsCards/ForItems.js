@@ -1,3 +1,6 @@
+import TemplateForItemCard from "../../../../components/Templates/UserData/ForMenu/TemplateForItemCard.html";
+import TemplateForItemCardHbs from "../../../../components/Templates/UserData/ForMenu/TemplateForItemCard.handlebars";
+
 
 let LocalBreadcrumbItemClick = ({ inFolderName, inFileNameWithExtension, inItemName }) => {
     this.ForScreens.FetchAsPost(inFolderName, inFileNameWithExtension, inItemName);
@@ -83,7 +86,15 @@ let LocalStartFunc = ({ inFolderName, inFileNameWithExtension, inFilesObjects })
 
     Object.entries(jVarLocalFilesObjects).forEach(
         ([key, value]) => {
-            let jVarLocalFromLoop = LocalLoopFunc({
+            // let jVarLocalFromLoop = LocalLoopFunc({
+            //     inFolderName: jVarLocalFolderName,
+            //     inFileNameWithExtension: jVarLocalFileNameWithExtension,
+            //     inItemName: value.ItemName,
+            //     inRowCount: value.RowCount,
+            //     inScreenCount: value.ScreenCount
+            // });
+
+            let jVarLocalFromLoop = TemplateForItemCardHbs({
                 inFolderName: jVarLocalFolderName,
                 inFileNameWithExtension: jVarLocalFileNameWithExtension,
                 inItemName: value.ItemName,
@@ -91,22 +102,34 @@ let LocalStartFunc = ({ inFolderName, inFileNameWithExtension, inFilesObjects })
                 inScreenCount: value.ScreenCount
             });
 
-            jVarLocalNewRow.appendChild(jVarLocalFromLoop);
+
+            //jVarLocalNewRow.appendChild(jVarLocalFromLoop);
+
+            //console.log("TemplateForItemCard : ", jVarLocalFromLoop);
+            jVarLocalNewRow.innerHTML = jVarLocalFromLoop;
+
+            // jVarLocalNewRow.innerHTML = TemplateForItemCardHbs({
+            //     inFolderName: jVarLocalFolderName,
+            //     inFileNameWithExtension: jVarLocalFileNameWithExtension,
+            //     inItemName: value.ItemName,
+            //     inRowCount: value.RowCount,
+            //     inScreenCount: value.ScreenCount
+            // });
         }
     );
 
-    jVarLocalKCont1.innerHTML = " ";
-    jVarLocalKCont1.appendChild(jVarLocalNewRow);
+    jVarLocalKCont1.innerHTML = TemplateForItemCardHbs(jVarLocalFilesObjects);
+    // jVarLocalKCont1.appendChild(jVarLocalNewRow);
 
-    Handlebars.registerPartial("aaaaaaaaaaaaa", "kkkkkkkkkkk");
+    // Handlebars.registerPartial("aaaaaaaaaaaaa", "kkkkkkkkkkk");
 
     let jVarLocalkeshavsoftItemClick = document.getElementsByClassName("keshavsoftItemclick");
-    console.log("jVarLocalkeshavsoftItemClick--:", jVarLocalkeshavsoftItemClick);
+    // console.log("jVarLocalkeshavsoftItemClick--:", jVarLocalkeshavsoftItemClick);
     Array.from(jVarLocalkeshavsoftItemClick).forEach((spanElement) => {
         spanElement.addEventListener("click", (event) => {
             let jVarInsideCurrentTarget = event.currentTarget;
             let jVarLocalKeshavsoftGetFileName = jVarInsideCurrentTarget.getAttribute("keshavsoftfilename");
-            console.log("jVarLocalKeshavsoftGetFileName:", jVarLocalKeshavsoftGetFileName);
+            // console.log("jVarLocalKeshavsoftGetFileName:", jVarLocalKeshavsoftGetFileName);
 
             ForItemsFetchAsPost({
                 inFolderName: jVarLocalFolderName,
@@ -120,9 +143,9 @@ let LocalLoopFunc = ({ inFolderName, inFileNameWithExtension, inItemName, inRowC
     let jVarLocalFolderName = inFolderName;
     let jVarLocalFileNameWithExtension = inFileNameWithExtension;
     let jVarLocalItemName = inItemName;
-
+    console.log("inItemName:", inItemName, TemplateForItemCard);
     let jVarLocalTemplate = document.getElementById("TemplateForItemCard");
-    var jVarLocalTemplateClone = jVarLocalTemplate.cloneNode(true);
+    //var jVarLocalTemplateClone = TemplateForItemCard.cloneNode(true);
 
     // jVarLocalTemplateClone.content.querySelector("a").setAttribute("onclick", `jGlobalClassForCardMenu.ForScreens.FetchAsPost('${jVarLocalFolderName}','${inFileNameWithExtension}','${jVarLocalItemName}','${inRowCount}')`);
 
@@ -131,11 +154,11 @@ let LocalLoopFunc = ({ inFolderName, inFileNameWithExtension, inItemName, inRowC
     //     console.log("jVarLocalCurrentTarget : ", jVarLocalCurrentTarget);
     // });
 
-    jVarLocalTemplateClone.content.querySelector(".ItemNameClass").innerHTML = jVarLocalItemName;
-    jVarLocalTemplateClone.content.querySelector(".RowCountClass").innerHTML = inRowCount;
-    jVarLocalTemplateClone.content.querySelector(".ScreenCountClass").innerHTML = inScreenCount;
+    // jVarLocalTemplateClone.content.querySelector(".ItemNameClass").innerHTML = jVarLocalItemName;
+    // jVarLocalTemplateClone.content.querySelector(".RowCountClass").innerHTML = inRowCount;
+    // jVarLocalTemplateClone.content.querySelector(".ScreenCountClass").innerHTML = inScreenCount;
 
-    return document.importNode(jVarLocalTemplateClone.content, true);
+    return document.importNode(TemplateForItemCard, true);
 };
 
 export { ForItemsFetchAsPost }
