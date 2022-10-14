@@ -1,14 +1,13 @@
 <div class="row">
     {{#each this}}
-    {{log "this" this}}
     <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <div class="card-body">
                     <h5 class="card-title ItemNameClass">{{ItemName}}</h5>
                     <p>Rows : <span class="RowCountClass">{{RowCount}}</span> </p>
-                    <a href="#" keshavsoftItemName="{{ItemName}}" class="btn btn-primary ">Screens : <span
-                            class="ScreenCountClass">{{ScreenCount}}</span>
+                    <a href="#" keshavsoftItemName="{{ItemName}}" data-RowCount="{{RowCount}}"
+                        class="btn btn-primary ">Screens : <span class="ScreenCountClass">{{ScreenCount}}</span>
                     </a>
                 </div>
             </div>

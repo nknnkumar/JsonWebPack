@@ -85,9 +85,6 @@ let LocalStartFunc = ({ inFolderName, inFileNameWithExtension, inFilesObjects })
     jVarLocalNewRow.setAttribute("class", "row");
 
     jVarLocalKCont1.innerHTML = TemplateForItemCardHbs(jVarLocalFilesObjects);
-    // jVarLocalKCont1.appendChild(jVarLocalNewRow);
-
-    // Handlebars.registerPartial("aaaaaaaaaaaaa", "kkkkkkkkkkk");
 
     let k1 = document.querySelectorAll('[keshavsoftitemname]');
 
@@ -95,13 +92,14 @@ let LocalStartFunc = ({ inFolderName, inFileNameWithExtension, inFilesObjects })
         spanElement.addEventListener("click", (event) => {
             let jVarInsideCurrentTarget = event.currentTarget;
             let jVarLocalKeshavsoftGetFileName = jVarInsideCurrentTarget.getAttribute("keshavsoftitemname");
-            // console.log("jVarLocalKeshavsoftGetFileName:", jVarLocalKeshavsoftGetFileName);
+            let jVarLocalRowCount = jVarInsideCurrentTarget.dataset.rowcount;
+            console.log("jVarLocalRowCount:", jVarLocalRowCount, jVarInsideCurrentTarget.dataset);
 
             ScreensFetchAsPost({
                 inFolderName: jVarLocalFolderName,
                 inFileNameWithExtension,
-                inItemName:jVarLocalKeshavsoftGetFileName,
-                inRowCount:16
+                inItemName: jVarLocalKeshavsoftGetFileName,
+                inRowCount: jVarLocalRowCount
             });
         });
     });
