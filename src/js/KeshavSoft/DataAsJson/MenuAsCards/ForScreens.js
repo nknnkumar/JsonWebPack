@@ -1,4 +1,4 @@
-let FetchAsPost = ({ inFolderName, inFileNameWithExtension, inItemName, inRowCount }) => {
+let ScreensFetchAsPost = ({ inFolderName, inFileNameWithExtension, inItemName, inRowCount }) => {
     let jVarLocalFolderName = inFolderName;
     let jVarLocalFileNameWithExtension = inFileNameWithExtension;
     let jVarLocalItemName = inItemName;
@@ -149,6 +149,6 @@ let LocalLoopFunc = ({ inFolderName, inFileNameWithExtension, inItemName, inScre
     return document.importNode(jVarLocalTemplateClone.content, true);
 };
 
-export { FetchAsPost };
+export { ScreensFetchAsPost };
 
 
