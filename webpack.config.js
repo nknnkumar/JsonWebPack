@@ -5,7 +5,7 @@ module.exports = {
     bundle: './src/js/main.js'
   },
   output: {
-    path: "C:\\KeshavSoft\\nodejs\\multi\\2022\\oct\\11-1\\KJson\\public\\js",
+    path: "D:\\KeshavSoft\\knode\\Multi\\2022\\october\\14\\KJson\\public\\js",
     filename: '[name].js',
   },
   module: {
